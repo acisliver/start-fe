@@ -139,59 +139,88 @@
 //     return x + y;
 //   };
 
-var nick = 'aji'; //전역변수
+// var nick = 'aji'; //전역변수
 
-function test() {
-  var age = 30; //지역변수
-  console.log(nick, age);
-}
+// function test() {
+//   var age = 30; //지역변수
+//   console.log(nick, age);
+// }
 
-test();
-console.log(age);
+// test();
+// console.log(age);
 
-alert('alert');
+// alert('alert');
 
-var who = prompt('당신은 누구세요?');
+// var who = prompt('당신은 누구세요?');
 
-console.log(who);
+// console.log(who);
 
-var isDelete = confirm('정말 삭제합니까?');
+// var isDelete = confirm('정말 삭제합니까?');
 
-console.log(isDelete); 
+// console.log(isDelete); 
 
-function test() {
-    console.log('test()');
-}
+// function test() {
+//     console.log('test()');
+// }
   
-var id = setTimeout(test, 1000); //1초후 1번실행
+// var id = setTimeout(test, 1000); //1초후 1번실행
   
-var id = setInterval(test, 1000); //1초마다 계속 실행
+// var id = setInterval(test, 1000); //1초마다 계속 실행
   
-//setInterval 보다 나은 방법
-function test() {
-console.log('test()');
-setTimeout(test, 1000);
+// //setInterval 보다 나은 방법
+// function test() {
+// console.log('test()');
+// setTimeout(test, 1000);
+// }
+
+// function sum(x, y) {
+// if (!y) y = 1;
+// console.log(x + y);
+// }
+// sum(3);
+
+// function sum() {
+// var size = 0;
+// for (var i = 0; i < arguments.length; i++) {
+//     size += arguments[i];
+// }
+
+// console.log(size);
+// }
+
+// sum(1, 2, 3, 4, 5, 6, 7);
+
+// var text = 'abc def ghi jkl abc def'; // 대상 문자열
+// var testReg = /abc/; // 찾을 문자열
+// var result = testReg.test(text);
+
+// console.log(result);
+
+// var gugu = function(){
+//   for(var a=1; a<10; a++){
+//     for(var b=1; b<10; b++){
+//       console.log(a*b);
+//     }
+//     console.log('\n');
+//   }
+// }
+
+// var a={
+//   a: 'a',
+//   f: function(){
+//     console.log('f');
+//   }
+// }
+
+
+function a(){
+  var sum = 0;
+  while(1){
+    var num = prompt('더할숫자를입력하세요');
+    if(num === null) break;
+    sum += parseInt(num);
+  }
+  alert('숫자의 총합은: '+sum);
 }
 
-function sum(x, y) {
-if (!y) y = 1;
-console.log(x + y);
-}
-sum(3);
-
-function sum() {
-var size = 0;
-for (var i = 0; i < arguments.length; i++) {
-    size += arguments[i];
-}
-
-console.log(size);
-}
-
-sum(1, 2, 3, 4, 5, 6, 7);
-
-var text = 'abc def ghi jkl abc def'; // 대상 문자열
-var testReg = /abc/; // 찾을 문자열
-var result = testReg.test(text);
-
-console.log(result);
+a();
