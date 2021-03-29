@@ -8,12 +8,7 @@
             border: gray solid 3px;
             width: 400px;
             height: 400px;
-            justify-content: flex-start;
-            align-items: flex-start; 
             font-size: 0px;           
-        }
-        .row{
-            display: inline-flex;
         }
         .black{
             background-color: black;
@@ -27,6 +22,12 @@
             height: 100px;
             display: inline-flex;
         }
+        .red{
+            background-color: red;
+            width: 100px;
+            height: 100px;
+            display: inline-flex;
+        }
     </style>
 </head>
 <body>
@@ -35,9 +36,8 @@
     
 </div>
 <script>
-    var board = document.getElementById("board");
+    const board = document.getElementById("board");
     let str = ''
-    let all_str = ''
     let black = '<div class="black"></div>'
     let white = '<div class="white"></div>'
     let isBlack = true;
@@ -49,10 +49,36 @@
             isBlack = !isBlack;
         }
         isBlack = !isBlack;
-        all_str += '<div "class=row">'+str+'</div>';
-        str = ''
     }
-    board.innerHTML = all_str;
+    board.innerHTML = str;
+
+    const blocks = document.querySelectorAll("#board >  div");
+
+    reRender = function (blocks) {
+        blocks.forEach(b => {
+            if(b.outerHTML==='<div class="white red"></div>' || '<div class="black red"></div>'){
+                        b.classList.remove("red");
+                    }
+        });
+    }
+
+    blocks.forEach(block => {
+        block.addEventListener("click", function(event){
+            if(event.target.outerHTML==='<div class="white"></div>'){
+                reRender(blocks);
+                block.classList.add('red');
+                
+            }
+            else if(event.target.outerHTML==='<div class="black"></div>'){
+                reRender(blocks);
+                block.classList.add('red');
+            }
+            else{
+
+            }
+        });
+    });
+    
 </script>
 </body>
 </html>
