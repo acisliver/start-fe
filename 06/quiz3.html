@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>DOM</title>
+    <style>
+      body {
+        padding: 10px;
+      }
+      .box {
+        width: 100px;
+        height: 30px;
+        background-color: #ddd;
+      }
+      .red {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="text" class="txt" value="hello" />
+      <button class="text-btn">TEXT 넣기</button>
+      <br />
+      <button class="add-red">빨간색으로</button>
+      <button class="add-btn">추가</button>
+      <button class="delete-btn">삭제</button>
+      <button class="reset-btn">초기화</button>
+      <button class="toggle-btn">보이기,숨기기 토글</button>
+      <button class="image-btn">이미지</button>
+    </div>
+
+    <div class="box"></div>
+    <script>
+      
+      const $addRed = document.querySelector(".add-red");
+      const $addBtn = document.querySelector(".add-btn");
+      const $deleteBtn = document.querySelector(".delete-btn");
+      const $textBtn = document.querySelector(".text-btn");
+      const $resetBtn = document.querySelector(".reset-btn");
+      const $toggleBtn = document.querySelector(".toggle-btn");
+      const $imageBtn = document.querySelector(".image-btn");
+
+      boxToRed($addRed);
+      addBox($addBtn);
+      deleteBox($deleteBtn);
+      addText($textBtn);
+      resetBox($resetBtn);
+      toggleBox($toggleBtn);
+      addImage($imageBtn);
+
+      // 빨간색으로
+      function boxToRed(btn){
+        btn.addEventListener("click", () => {
+          const $boxes = document.querySelectorAll(".box");
+          $boxes.forEach(box => box.classList.add('red'));
+        });
+      }
+      
+
+      // 추가
+      function addBox(btn){
+        btn.addEventListener("click", () => {
+          const newBox = document.createElement('div');
+          newBox.classList.add('box');
+          document.body.appendChild(newBox)
+        });
+      }
+      
+      //삭제
+      function deleteBox(btn){
+        btn.addEventListener("click", () =>{
+          const $boxes = document.querySelectorAll(".box");
+          if($boxes.length === 0) return;
+          $boxes[$boxes.length-1].remove();
+        });
+      }
+      
+      //Text넣기
+      function addText(btn){
+        btn.addEventListener("click", () => {
+          const $boxes = document.querySelectorAll(".box");
+          const textVal = document.querySelector(".txt").value;
+          $boxes.forEach(box => box.innerHTML = textVal);
+        });
+      }
+    
+
+      //초기화
+      function resetBox(btn){
+        btn.addEventListener("click", () => {
+          const $boxes = document.querySelectorAll(".box");
+          $boxes.forEach(box => box.remove());
+        })
+      }
+
+      //토글
+      function toggleBox(btn){
+        btn.addEventListener("click", () => {
+          const $boxes = document.querySelectorAll(".box");
+          if($boxes[0] === undefined) return;
+          
+          if ($boxes[0].style.visibility === "hidden") $boxes.forEach(box => box.style.visibility = "visible");
+          else $boxes.forEach(box => box.style.visibility = "hidden");
+        })
+      }
+     
+
+      //이미지
+      function addImage(btn){
+        btn.addEventListener("click", () => {
+          let box = document.querySelector('.box');
+          const src = 'https://i.imgur.com/69NjYBH.png';
+          const imgTag = `<img src='${src}'>`;
+          if(box === null) {
+            box = document.createElement('div');
+            box.classList.add('box');
+            document.body.appendChild(box);
+          }
+          box.innerHTML = imgTag;
+        })
+      }
+    </script>
+  </body>
+</html>
