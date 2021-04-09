@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        #box{
+            background-color: gray;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+    </style>
+  </head>
+  <body>
+    <ol>
+      <li>박스를 누르면 드래그가 시작됩니다 (mousedown 이벤트)</li>
+      <li>
+        마우스가 눌린 상태로 마우스를 움직이면 박스가 마우스 커서를 따라
+        움직입니다 (mousemove 이벤트)
+      </li>
+      <li>클릭을 해제하면 드래그가 멈춥니다 (mouseup 이벤트)</li>
+    </ol>
+    <div id="box">
+        Drag me!
+    </div>
+      <script>
+        $box = document.getElementById('box');
+        
+        dragMove($box);
+
+        function dragMove(box){
+          let Left, Top, width, height;
+
+          box.addEventListener("mousedown", boxDown)
+
+          function boxDown(event){
+            $box.style.zIndex = 1000;
+            
+            //드래그 시작 위치 설정
+            Left = event.clientX;
+            Top = event.clientY;
+              
+            document.addEventListener("mousemove", boxMove);
+            document.addEventListener("mouseup", removeListener);
+          }
+          
+          // 이 함수가 호출될 때 마다
+          // 원래 마우스의 위치와 
+          // 움직인 마우스의 위치를 통해 
+          // BOX이동
+          function boxMove(event){
+            //마우스가 움직인 거리
+            width = Left - event.clientX;
+            height = Top - event.clientY;
+            
+            //마우스 위치 재설정
+            Left = event.clientX;
+            Top = event.clientY;
+
+            //랜더링
+            box.style.left = `${box.offsetLeft - width}px`;
+            box.style.top = `${box.offsetTop - height}px`;
+          }
+
+          //드래그 종료 시 이벤트 리스너 해제
+          //드래그 이벤트 이후에 BOX 움직임X
+          function removeListener(event){
+            document.removeEventListener("mouseup", removeListener);
+            document.removeEventListener("mousemove", boxMove);
+        }
+        }
+
+        
+      
+
+
+        
+        
+        
+
+
+
+
+        // 마우스 업
+        $box.addEventListener("mouseup", () => {
+            
+        })
+      </script>
+  </body>
+</html>
